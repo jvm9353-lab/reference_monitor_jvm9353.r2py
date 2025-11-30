@@ -1,3 +1,5 @@
+from numpy.ma.mrecords import openfile
+
 TYPE="type"
 ARGS="args"
 RETURN="return"
@@ -6,8 +8,17 @@ TARGET="target"
 FUNC="func"
 OBJC="objc"
 
+
+def createlock():
+    pass
+
+
+def listfiles():
+    pass
+
+
 class ABFile():
-  def __init__(self, filename, create):
+  def __init__(self, filename, create, mycontext=None):
     mycontext['debug'] = False
     self.Afn = filename + '.a'
     self.Bfn = filename + '.b'
@@ -88,12 +99,17 @@ sec_file_def = {
   "close": {"type": "func", "args": None, "exceptions": None, "return": (bool, type(None)), "target": ABFile.close}
 }
 
-CHILD_CONTEXT_DEF["ABopenfile"] = {
+CHILD_CONTEXT_DEF ["ABopenfile"] = {
   TYPE: OBJC,
   ARGS: (str, bool),
   EXCP: Exception,
   RETURN: sec_file_def,
   TARGET: ABopenfile
 }
+
+
+def secure_dispatch_module():
+    pass
+
 
 secure_dispatch_module()
